@@ -283,7 +283,9 @@ class BoundColumn(StrAndUnicode):
         """The key to use when accessing this column's values in the
         source data.
         """
-        return self.column.data if self.column.data else self.declared_name
+        if self.column.data:
+            return self.column.data
+        return self.declared_name
 
     def _get_sortable(self):
         if self.column.sortable is not None:
